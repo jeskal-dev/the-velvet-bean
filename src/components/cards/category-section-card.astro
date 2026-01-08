@@ -1,0 +1,48 @@
+---
+import type { MenuCategory } from "../../types/menu.types";
+import type { MenuItem } from "../../types/menu.types";
+import CoffeeIcon from "../icons/coffee-icon.astro";
+import PastryIcon from "../icons/pastry-icon.astro";
+import TeaIcon from "../icons/tea-icon.astro";
+
+interface Props {
+  id: MenuCategory;
+  name: string;
+  description: string;
+  class?: string;
+}
+
+const { id, name, description, class: className } = Astro.props;
+---
+
+<div
+  class:list={["menu-section mb-16 last:mb-0", className]}
+  id={id}
+  data-category={id}
+>
+  <!-- Category Header -->
+  <div class="flex items-center gap-4 mb-8">
+    <div
+      class="w-12 h-12 rounded-xl bg-linear-to-br from-primary/10 to-accent/10 flex items-center justify-center"
+    >
+      {id === "coffee" && <CoffeeIcon size="lg" class="text-primary" />}
+      {id === "pastry" && <PastryIcon size="lg" class="text-primary" />}
+      {id === "tea" && <TeaIcon size="lg" class="text-primary" />}
+    </div>
+    <div>
+      <h2 class="font-serif text-2xl font-bold text-foreground">
+        {name}
+      </h2>
+      <p class="text-sm text-muted-foreground">
+        {description}
+      </p>
+    </div>
+  </div>
+
+  <!-- Slot for menu items -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
+    <slot />
+  </div>
+</div>

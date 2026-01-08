@@ -1,0 +1,93 @@
+---
+import AboutValueCard from "../cards/about-value-card.astro";
+
+interface Value {
+  id: "sustainability" | "fairTrade" | "community" | "excellence";
+  title: string;
+  description: string;
+}
+
+const values: Value[] = [
+  {
+    id: "community",
+    title: "Vínculos Reales",
+    description:
+      "Creemos en la charla cara a cara y en conocer tu nombre. Somos un punto de encuentro para el barrio.",
+  },
+  {
+    id: "fairTrade",
+    title: "Trato Directo",
+    description:
+      "Eliminamos intermediarios para que el caficultor reciba lo justo y tú tomes la mejor calidad.",
+  },
+  {
+    id: "sustainability",
+    title: "Huella Mínima",
+    description:
+      "Desde tazas compostables hasta residuo cero en barra. Amamos nuestra ciudad tanto como nuestro café.",
+  },
+  {
+    id: "excellence",
+    title: "Obsesión Local",
+    description:
+      "Cada detalle importa. Si no es perfecto, no sale de nuestra barra. Es nuestro compromiso contigo.",
+  },
+];
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section class:list={["py-24 lg:py-40 relative overflow-hidden", className]}>
+  <!-- Background Accents (Subtle) -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+    <div
+      class="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header with Impact -->
+    <div class="max-w-3xl mx-auto text-center mb-24">
+      <span
+        class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-linear-to-r from-accent/10 to-primary/10 text-accent text-xs font-bold uppercase tracking-widest mb-6 border border-accent/20"
+      >
+        Nuestra Filosofía
+      </span>
+      <h2
+        class="motion-preset-slide-up font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6"
+      >
+        Principios que se <br />
+        <span class="text-primary italic">sirven en cada taza</span>
+      </h2>
+      <p
+        class="motion-preset-fade motion-delay-100 text-lg sm:text-xl text-muted-foreground leading-relaxed"
+      >
+        No somos una cadena. Somos gente real trabajando para gente real, con
+        valores que no se negocian.
+      </p>
+    </div>
+
+    <!-- Values Grid (Refined Gaps) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {
+        values.map((value, index) => (
+          <AboutValueCard
+            id={value.id}
+            title={value.title}
+            description={value.description}
+            index={index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

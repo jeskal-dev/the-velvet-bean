@@ -1,0 +1,227 @@
+---
+import Logo from "../icons/logo.astro";
+import InstagramIcon from "../icons/instagram-icon.astro";
+import FacebookIcon from "../icons/facebook-icon.astro";
+import TwitterIcon from "../icons/twitter-icon.astro";
+import LocationIcon from "../icons/location-icon.astro";
+import PhoneIcon from "../icons/phone-icon.astro";
+import MailIcon from "../icons/mail-icon.astro";
+
+interface SocialLink {
+  href: string;
+  label: string;
+  icon: "instagram" | "facebook" | "twitter";
+}
+
+const socialLinks: SocialLink[] = [
+  { href: "#", label: "Instagram", icon: "instagram" },
+  { href: "#", label: "Facebook", icon: "facebook" },
+  { href: "#", label: "Twitter", icon: "twitter" },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="relative bg-background border-t border-border mt-auto overflow-hidden"
+>
+  <!-- Subtle Background Pattern/Glow -->
+  <div class="absolute inset-0 pointer-events-none opacity-20">
+    <div
+      class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute top-0 right-0 w-64 h-full bg-linear-to-l from-accent/5 to-transparent"
+    >
+    </div>
+  </div>
+
+  <div
+    class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10"
+  >
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+      <!-- Brand & Statement -->
+      <div class="lg:col-span-5 flex flex-col justify-between">
+        <div class="max-w-md">
+          <a href="/" class="flex items-center gap-4 group mb-8">
+            <div
+              class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500"
+            >
+              <Logo class="text-primary" />
+            </div>
+            <span
+              class="font-serif font-bold text-3xl tracking-tight text-foreground"
+            >
+              The Velvet <span class="text-primary italic">Bean</span>
+            </span>
+          </a>
+          <h3
+            class="font-serif text-2xl lg:text-3xl font-medium leading-tight text-foreground mb-6"
+          >
+            Dando vida a tu ritual diario con <span
+              class="text-accent italic subrayado-decorativo">café honesto</span
+            > y alma local.
+          </h3>
+          <p class="text-muted-foreground text-lg leading-relaxed mb-8">
+            No somos solo una cafetería, somos el punto de encuentro donde nacen
+            las grandes ideas y las mejores charlas.
+          </p>
+        </div>
+
+        <!-- Social Proof/Badge -->
+        <div
+          class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-primary"
+        >
+          <div class="w-8 h-px bg-primary/30"></div>
+          <span>Tostado a Mano en Madrid</span>
+        </div>
+      </div>
+
+      <!-- Navigation Grid -->
+      <div
+        class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12 lg:pl-12"
+      >
+        <!-- Navigation -->
+        <div>
+          <p class="font-serif text-xl font-bold text-foreground mb-8">
+            Explorar
+          </p>
+          <ul class="space-y-4">
+            <li>
+              <a
+                href="/"
+                class="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block"
+                >Inicio</a>
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block"
+                >Nuestra Historia</a>
+            </li>
+            <li>
+              <a
+                href="/menu"
+                class="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block"
+                >El Menú</a>
+            </li>
+            <li>
+              <a
+                href="/visit"
+                class="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block"
+                >Visítenos</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact & Location -->
+        <div>
+          <p class="font-serif text-xl font-bold text-foreground mb-8">
+            Encuéntranos
+          </p>
+          <ul class="space-y-6">
+            <li class="group">
+              <span
+                class="block text-xs font-bold uppercase tracking-widest text-accent mb-1"
+                >Dirección</span
+              >
+              <a
+                href="#"
+                class="text-muted-foreground group-hover:text-foreground transition-colors leading-relaxed"
+              >
+                Calle del Café 123<br />28004, Madrid, España
+              </a>
+            </li>
+            <li class="group">
+              <span
+                class="block text-xs font-bold uppercase tracking-widest text-accent mb-1"
+                >Di Hola</span
+              >
+              <a
+                href="mailto:hola@thevelvetbean.com"
+                class="text-muted-foreground group-hover:text-primary transition-colors"
+              >
+                hola@thevelvetbean.com
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Working Hours -->
+        <div class="col-span-2 md:col-span-1">
+          <p class="font-serif text-xl font-bold text-foreground mb-8">
+            Abierto
+          </p>
+          <ul class="space-y-4 text-sm">
+            <li
+              class="flex justify-between items-center border-b border-border/40 pb-2"
+            >
+              <span class="text-muted-foreground">Lun - Vie</span>
+              <span class="font-bold text-foreground">7:30 - 20:30</span>
+            </li>
+            <li
+              class="flex justify-between items-center border-b border-border/40 pb-2"
+            >
+              <span class="text-muted-foreground">Sábado</span>
+              <span class="font-bold text-foreground">8:30 - 21:00</span>
+            </li>
+            <li
+              class="flex justify-between items-center border-b border-border/40 pb-2"
+            >
+              <span class="text-muted-foreground">Domingo</span>
+              <span class="font-bold text-foreground">9:00 - 19:30</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div
+      class="mt-20 pt-10 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-8"
+    >
+      <!-- Copyright -->
+      <div class="order-2 md:order-1 text-center md:text-left">
+        <p class="text-sm text-muted-foreground">
+          © {currentYear} The Velvet Bean. Hecho con <span
+            class="text-primary italic">corazón</span
+          > para el barrio.
+        </p>
+      </div>
+
+      <!-- Brand Large bg-text -->
+      <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 opacity-[0.02] text-[15vw] font-serif font-extrabold whitespace-nowrap pointer-events-none select-none"
+      >
+        THE VELVET BEAN
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex items-center gap-3 order-1 md:order-2">
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              aria-label={social.label}
+              class="w-12 h-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-1 transition-all duration-300 shadow-sm"
+            >
+              {social.icon === "instagram" && <InstagramIcon size="md" />}
+              {social.icon === "facebook" && <FacebookIcon size="md" />}
+              {social.icon === "twitter" && <TwitterIcon size="md" />}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .subrayado-decorativo {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+</style>

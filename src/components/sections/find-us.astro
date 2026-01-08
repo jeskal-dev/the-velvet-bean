@@ -1,0 +1,236 @@
+---
+import Image from "../ui/image.astro";
+import LocationIcon from "../icons/location-icon.astro";
+import PhoneIcon from "../icons/phone-icon.astro";
+import MailIcon from "../icons/mail-icon.astro";
+import ClockIcon from "../icons/clock-icon.astro";
+import Button from "../ui/button.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const businessInfo = {
+  address: "Calle del Café 123, 28004 Madrid, España",
+  phone: "+34 912 345 678",
+  email: "hola@thevelvetbean.com",
+  mapsUrl: "https://goo.gl/maps/example",
+  hours: [
+    { days: "Lun - Vie", time: "7:30 - 20:30" },
+    { days: "Sábado", time: "8:30 - 21:00" },
+    { days: "Domingo", time: "9:00 - 19:30" },
+  ],
+};
+---
+
+<section
+  class:list={[
+    "py-24 lg:py-40 relative overflow-hidden bg-background",
+    className,
+  ]}
+>
+  <!-- Background Accents -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-30">
+    <div
+      class="absolute top-1/2 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+      <!-- Contact & Hours -->
+      <div class="lg:col-span-12 xl:col-span-5">
+        <div class="max-w-xl">
+          <span
+            class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/20"
+          >
+            Nuestra Casa
+          </span>
+          <h2
+            class="motion-preset-slide-up font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-[0.9] tracking-tighter"
+          >
+            Ven a
+            <span class="text-primary italic subrayado-decorativo"
+              >visitarnos</span
+            >
+          </h2>
+          <p
+            class="motion-preset-fade motion-delay-200 text-lg text-muted-foreground leading-relaxed mb-12"
+          >
+            Estamos situados en el corazón del barrio, un espacio diseñado para
+            la calma y el disfrute del mejor café de especialidad.
+          </p>
+
+          <div class="space-y-10">
+            <!-- Contact Details -->
+            <div class="flex flex-row gap-8">
+              <div class="group flex items-start gap-4">
+                <div
+                  class="size-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500"
+                >
+                  <LocationIcon size="sm" class="" />
+                </div>
+                <div>
+                  <h4
+                    class="font-bold text-sm uppercase tracking-widest text-foreground mb-1"
+                  >
+                    Ubicación
+                  </h4>
+                  <p class="text-muted-foreground leading-snug max-w-52">
+                    {businessInfo.address}
+                  </p>
+                </div>
+              </div>
+
+              <div class="group flex items-start gap-4">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-card border border-border/50 flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500"
+                >
+                  <PhoneIcon size="sm" />
+                </div>
+                <div>
+                  <h4
+                    class="font-bold text-sm uppercase tracking-widest text-foreground mb-1"
+                  >
+                    Teléfono
+                  </h4>
+                  <p class="text-muted-foreground leading-snug">
+                    {businessInfo.phone}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Opening Hours Card -->
+            <div
+              class="motion-preset-slide-up motion-delay-300 p-8 rounded-3xl bg-card border border-border/50 shadow-2xl shadow-black/5 relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-primary/10 transition-colors duration-700"
+              >
+              </div>
+
+              <div class="flex items-center gap-3 mb-8 relative z-10">
+                <ClockIcon class="text-accent" size="sm" />
+                <h3 class="font-serif text-2xl font-bold text-foreground">
+                  Nuestro Horario
+                </h3>
+              </div>
+
+              <ul class="space-y-4 text-sm relative z-10">
+                {
+                  businessInfo.hours.map((item) => (
+                    <li class="flex justify-between items-center border-b border-border/40 pb-3 last:border-0 last:pb-0">
+                      <span class="text-muted-foreground font-medium uppercase tracking-wider text-[10px]">
+                        {item.days}
+                      </span>
+                      <span class="font-bold text-foreground tracking-tight">
+                        {item.time}
+                      </span>
+                    </li>
+                  ))
+                }
+              </ul>
+
+              <div class="mt-8 pt-6 border-t border-border/40 relative z-10">
+                <p
+                  class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/60 text-center"
+                >
+                  * Horarios sujetos a festivos locales
+                </p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <Button
+                href={businessInfo.mapsUrl}
+                variant="primary"
+                size="lg"
+                rounded="full"
+                withIcon
+              >
+                Ver en Google Maps
+              </Button>
+              <Button
+                href={`mailto:${businessInfo.email}`}
+                variant="outline"
+                size="lg"
+                rounded="full"
+              >
+                Enviar E-mail
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Preview -->
+      <div class="lg:col-span-12 xl:col-span-7">
+        <div class="relative group">
+          <!-- Decorative Frame -->
+          <div
+            class="absolute -inset-4 border border-primary/10 rounded-[3rem] -z-10 group-hover:scale-[1.02] transition-transform duration-700"
+          >
+          </div>
+
+          <div
+            class="rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/20 ring-1 ring-border/50"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80"
+              alt="Nuestro local"
+              aspectRatio="3/2"
+              class="group-hover:scale-110 transition-transform duration-1000 ease-out"
+            />
+
+            <!-- Floating Badge Over Image -->
+            <div
+              class="absolute bottom-8 right-8 bg-background/80 backdrop-blur-md border border-border/50 p-6 rounded-3xl shadow-xl max-w-64 motion-preset-fade motion-delay-500"
+            >
+              <p
+                class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-2"
+              >
+                Ambiente Único
+              </p>
+              <h4
+                class="font-serif text-xl font-bold text-foreground italic leading-tight"
+              >
+                Espacios diseñados para tu ritual diario.
+              </h4>
+            </div>
+          </div>
+
+          <!-- Bottom Decorative Element -->
+          <div
+            class="absolute -bottom-6 -left-6 w-32 h-32 rounded-3xl bg-primary hidden sm:flex items-center justify-center text-primary-foreground shadow-2xl -rotate-6 group-hover:rotate-0 transition-all duration-700"
+          >
+            <div class="text-center">
+              <p class="text-2xl font-bold font-serif leading-none italic">
+                100%
+              </p>
+              <p class="text-[10px] font-bold uppercase tracking-widest mt-1">
+                Local
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .subrayado-decorativo {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+  }
+</style>

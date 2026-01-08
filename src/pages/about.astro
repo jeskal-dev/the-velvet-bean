@@ -1,0 +1,67 @@
+---
+import Layout from "../components/layouts/layout.astro";
+import Header from "../components/layouts/header.astro";
+import Footer from "../components/layouts/footer.astro";
+import AboutStory from "../components/sections/about-story.astro";
+import AboutProcess from "../components/sections/about-process.astro";
+import AboutValues from "../components/sections/about-values.astro";
+import CTA from "../components/sections/cta.astro";
+---
+
+<Layout
+  title="Sobre Nosotros | The Velvet Bean"
+  description="Conoce la historia de The Velvet Bean, nuestra pasión por el café de especialidad y los valores que nos definen."
+>
+  <Header />
+
+  <main class="flex-1">
+    <section
+      class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background"
+    >
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <div
+          class="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-primary/5 to-transparent"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-1/4 h-1/2 bg-linear-to-tr from-accent/5 to-transparent"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl">
+          <span
+            class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-6 border border-accent/20"
+          >
+            Nuestra Esencia
+          </span>
+          <h1
+            class="motion-preset-slide-right font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-foreground mb-8 leading-[0.95] tracking-tighter"
+          >
+            Donde cada <span class="text-primary italic">grano</span>
+            <br />
+            cuenta una <span
+              class="text-accent underline decoration-primary/30 underline-offset-8"
+              >historia</span
+            >
+          </h1>
+          <p
+            class="motion-preset-fade motion-delay-200 text-xl sm:text-2xl text-muted-foreground leading-relaxed"
+          >
+            Nacimos con la idea de ser el rincón favorito de tu barrio. Un
+            espacio donde la calidad artesanal se encuentra con la calidez de
+            casa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <AboutStory />
+    <AboutProcess />
+    <AboutValues />
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>

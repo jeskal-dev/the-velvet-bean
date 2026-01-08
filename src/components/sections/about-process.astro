@@ -1,0 +1,87 @@
+---
+import AboutProcessCard from "../cards/about-process-card.astro";
+
+interface ProcessStep {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+const steps: ProcessStep[] = [
+  {
+    id: "01",
+    title: "Selección en Origen",
+    description:
+      "Conectamos directamente con caficultores locales para asegurar granos de especialidad con alma y trazabilidad.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80",
+  },
+  {
+    id: "02",
+    title: "Tostado Artesano",
+    description:
+      "Tostamos semanalmente en nuestro propio local, ajustando cada curva para resaltar las notas naturales de cada lote.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
+  },
+  {
+    id: "03",
+    title: "Preparación Lenta",
+    description:
+      "Nada de máquinas automáticas. Calibramos cada extracción y cada vaporización para alcanzar la taza perfecta.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80",
+  },
+];
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "py-20 lg:py-36 bg-linear-to-b from-card/30 to-background",
+    className,
+  ]}
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-28">
+      <span
+        class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4 border border-primary/20"
+      >
+        Pasión por lo que hacemos
+      </span>
+      <h2
+        class="motion-preset-slide-up font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6"
+      >
+        El viaje de <span class="text-primary italic">tu café</span>
+      </h2>
+      <p
+        class="motion-preset-fade motion-delay-100 text-lg sm:text-xl text-muted-foreground leading-relaxed"
+      >
+        Desde la planta hasta tu mesa, seguimos un proceso transparente y
+        meticuloso donde la calidad es nuestra única norma.
+      </p>
+    </div>
+
+    <!-- Process Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+      {
+        steps.map((step, index) => (
+          <AboutProcessCard
+            id={step.id}
+            title={step.title}
+            description={step.description}
+            imageUrl={step.imageUrl}
+            index={index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

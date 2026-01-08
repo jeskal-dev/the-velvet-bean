@@ -1,0 +1,97 @@
+---
+import Button from "../ui/button.astro";
+import CoffeeIcon from "../icons/coffee-icon.astro";
+import StarIcon from "../icons/star-icon.astro";
+import Image from "../ui/image.astro";
+import SocialProof from "../ui/social-proof.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={["relative py-24 lg:py-36 overflow-hidden bg-card/30", className]}
+>
+  <!-- Background Image with deep overlay for a seamless look -->
+  <div class="absolute inset-0 z-0 opacity-50">
+    <Image
+      src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1920&q=80"
+      alt="Ambiente de la cafetería"
+      class="w-full h-full object-cover grayscale-40"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-b from-background via-background/80 to-background"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+      <!-- Decorative Label -->
+      <div class="motion-preset-fade flex items-center gap-3 mb-8">
+        <CoffeeIcon size="sm" class="text-primary" />
+        <span class="text-xs font-bold uppercase tracking-widest text-primary"
+          >Te esperamos hoy</span
+        >
+        <CoffeeIcon size="sm" class="text-primary" />
+      </div>
+
+      <!-- Main Headline -->
+      <h2
+        class="motion-preset-slide-up font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-[1.1]"
+      >
+        Donde el tiempo se detiene y <br class="hidden md:block" />
+        <span
+          class="text-accent underline decoration-primary/30 underline-offset-8 italic"
+          >empieza el sabor</span
+        >
+      </h2>
+
+      <!-- Description -->
+      <p
+        class="motion-preset-fade motion-delay-100 text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed"
+      >
+        Ven a por tu dosis diaria de felicidad. Productos locales, tostado
+        artesanal y el mejor ambiente de la ciudad.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div
+        class="motion-preset-fade motion-delay-200 flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
+      >
+        <Button
+          href="/menu"
+          variant="primary"
+          size="lg"
+          rounded="full"
+          withIcon
+          class="min-w-50 shadow-lg shadow-primary/10"
+        >
+          Explorar la Carta
+        </Button>
+        <Button
+          href="/visit"
+          variant="outline"
+          size="lg"
+          rounded="full"
+          class="min-w-50 bg-white/5 hover:bg-white/10 backdrop-blur-md"
+        >
+          Encuéntranos
+        </Button>
+      </div>
+
+      <!-- Minimal Social Proof -->
+      <div class="motion-preset-fade motion-delay-300 mt-16">
+        <SocialProof
+          rating="4.9"
+          count="+500"
+          label="Sabor local garantizado"
+        />
+      </div>
+    </div>
+  </div>
+</section>

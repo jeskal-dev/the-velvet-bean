@@ -1,0 +1,139 @@
+---
+import Button from "../ui/button.astro";
+import CoffeeIcon from "../icons/coffee-icon.astro";
+import ArrowRightIcon from "../icons/arrow-right-icon.astro";
+import Image from "../ui/image.astro";
+import SocialProof from "../ui/social-proof.astro";
+import StarIcon from "../icons/star-icon.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "relative min-h-[85vh] lg:min-h-[80vh] flex items-center overflow-hidden bg-background",
+    className,
+  ]}
+>
+  <!-- Background Image - Optimized for focus -->
+  <div class="absolute inset-0 z-0">
+    <Image
+      src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=80"
+      alt="Granos de café frescos y preparación artesanal"
+      class="w-full h-full object-cover grayscale-30 opacity-90"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Sharp Gradients for better contrast in compact view -->
+    <div
+      class="absolute inset-0 bg-linear-to-r from-background via-background/85 to-transparent lg:w-3/5"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-3xl py-12">
+      <!-- Local Identity Badge - More compact -->
+      <div class="motion-preset-fade flex items-center gap-2.5 mb-6 group">
+        <div
+          class="p-2 rounded-xl bg-primary/20 backdrop-blur-md flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
+        >
+          <CoffeeIcon size="sm" class="text-primary" />
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-primary leading-none mb-1"
+            >Tu Rincón Local</span
+          >
+          <span class="text-[11px] text-muted-foreground font-medium"
+            >Café de especialidad tostado aquí</span
+          >
+        </div>
+      </div>
+
+      <!-- Main Headline - Reduced sizes for a tighter look -->
+      <h1
+        class="motion-preset-slide-right font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[0.95] tracking-tighter"
+      >
+        El café que <br />
+        <span class="text-primary italic">mereces</span>, en tu <br
+          class="hidden sm:block"
+        />
+        propio <span
+          class="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent underline decoration-primary/30 underline-offset-10"
+          >barrio</span
+        >
+      </h1>
+
+      <!-- Local Description - Narrower maxWidth for better legibility -->
+      <p
+        class="motion-preset-fade motion-delay-200 text-lg sm:text-xl text-muted-foreground mb-10 max-w-xl leading-relaxed"
+      >
+        En <span class="text-foreground font-bold">The Velvet Bean</span>, los
+        nombres importan y la prisa no existe. Ven a visitarnos y descubre tu
+        nueva pausa favorita.
+      </p>
+
+      <!-- CTA Section - Smaller buttons/gaps -->
+      <div
+        class="motion-preset-fade motion-delay-300 flex flex-col sm:flex-row items-center gap-4 mb-14"
+      >
+        <Button
+          href="/menu"
+          variant="primary"
+          size="lg"
+          rounded="full"
+          class="min-w-50 shadow-xl shadow-primary/20"
+        >
+          Ver Menú
+          <ArrowRightIcon size="xs" class="ml-2" />
+        </Button>
+        <Button
+          href="/visit"
+          variant="outline"
+          size="lg"
+          rounded="full"
+          class="min-w-50 backdrop-blur-md bg-background/10"
+        >
+          Ubicación
+        </Button>
+      </div>
+
+      <!-- Integrated Social Proof - Smaller footprint -->
+      <div
+        class="motion-preset-fade motion-delay-400 inline-flex items-center gap-4 p-1.5 pr-6 bg-card/60 backdrop-blur-xl rounded-full border border-border/50 shadow-xl"
+      >
+        <div
+          class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/30 rotate-12"
+        >
+          <StarIcon size="xs" class="fill-current" />
+        </div>
+        <SocialProof rating="4.9" count="+500" label="Elección vecinal" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Label - Removed for cleanliness, or made very subtle -->
+  <div
+    class="absolute -right-25 top-1/2 -translate-y-1/2 -rotate-90 hidden xl:block select-none pointer-events-none opacity-[0.03]"
+  >
+    <span class="text-[8rem] font-serif font-bold text-foreground"
+      >THE VELVET BEAN</span
+    >
+  </div>
+
+  <!-- Discrete Scroll Tooltip -->
+  <div
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 motion-preset-fade motion-delay-500 flex flex-col items-center gap-1 opacity-50 sm:hidden lg:flex"
+  >
+    <div class="w-px h-8 bg-linear-to-b from-primary to-transparent"></div>
+  </div>
+</section>

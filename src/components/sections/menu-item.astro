@@ -1,0 +1,96 @@
+---
+import type { MenuItem } from "../../types/menu.types";
+import Image from "../ui/image.astro";
+import StarIcon from "../icons/star-icon.astro";
+import { formatPrice } from "../../helpers";
+
+interface Props extends MenuItem {
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  description,
+  price,
+  category,
+  image,
+  featured,
+  class: className,
+} = Astro.props;
+
+const categoryLabels = {
+  coffee: "Café",
+  pastry: "Postre",
+  tea: "Té",
+};
+---
+
+<article
+  class:list={[
+    "group/card relative bg-card rounded-2xl overflow-hidden",
+    "border border-border/50 hover:border-primary/30",
+    "shadow-sm hover:shadow-xl hover:shadow-primary/5",
+    "motion-safe:transition-all motion-safe:duration-300",
+    className,
+  ]}
+>
+  <!-- Featured Badge -->
+  {
+    featured && (
+      <div class="absolute top-4 left-4 z-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-medium shadow-lg">
+          <StarIcon size="xs" />
+          Destacado
+        </span>
+      </div>
+    )
+  }
+
+  <!-- Image -->
+  <div class="relative overflow-hidden">
+    <Image
+      src={image || `https://picsum.photos/seed/${id}/400/300`}
+      alt={name}
+      aspectRatio="4/3"
+      class="group-hover/card:scale-105"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 motion-safe:transition-opacity motion-safe:duration-300"
+    >
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5 lg:p-6">
+    <!-- Category -->
+    <span
+      class="text-xs font-medium uppercase tracking-widest text-accent mb-2 block"
+    >
+      {categoryLabels[category]}
+    </span>
+
+    <!-- Title & Price Row -->
+    <div class="flex items-start justify-between gap-4 mb-3">
+      <h3
+        class="font-serif text-lg font-semibold text-foreground group-hover/card:text-primary motion-safe:transition-colors"
+      >
+        {name}
+      </h3>
+      <span class="text-lg font-bold text-primary whitespace-nowrap">
+        {formatPrice(price)}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+      {description}
+    </p>
+  </div>
+
+  <!-- Hover Accent Line -->
+  <div
+    class="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-accent opacity-0 group-hover/card:opacity-100 motion-safe:transition-opacity motion-safe:duration-300"
+  >
+  </div>
+</article>

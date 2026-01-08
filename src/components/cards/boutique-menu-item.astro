@@ -1,0 +1,80 @@
+---
+import { formatPrice } from "../../helpers";
+import type { MenuItem } from "../../types/menu.types";
+import Image from "../ui/image.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  price: number;
+  image?: string;
+  featured?: boolean;
+}
+
+const { name, description, price, image, featured } = Astro.props;
+---
+
+<div
+  class="group py-6 border-b border-border/40 hover:border-primary/30 transition-all duration-500"
+>
+  <div class="flex items-start gap-6">
+    <!-- Mini Round Image -->
+    <div
+      class="relative shrink-0 w-20 h-20 rounded-full overflow-hidden ring-2 ring-border/50 group-hover:ring-primary/40 transition-all duration-500 shadow-sm"
+    >
+      {
+        image && (
+          <Image
+            src={image}
+            alt={name}
+            aspectRatio="1/1"
+            class="group-hover:scale-110 transition-transform duration-700"
+          />
+        )
+      }
+      {
+        featured && (
+          <div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+            <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Info -->
+    <div class="flex-1 min-w-0">
+      <div class="flex items-baseline justify-between gap-4 mb-2">
+        <h3
+          class="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors truncate"
+        >
+          {name}
+          {
+            featured && (
+              <span class="ml-2 text-[10px] uppercase tracking-widest text-accent italic font-sans align-middle bg-accent/10 px-2 py-0.5 rounded-full">
+                Favorito
+              </span>
+            )
+          }
+        </h3>
+        <span
+          class="font-serif text-lg font-bold text-primary whitespace-nowrap"
+        >
+          {formatPrice(price)}
+        </span>
+      </div>
+
+      <p
+        class="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors line-clamp-2"
+      >
+        {description}
+      </p>
+    </div>
+
+    <!-- Hover Arrow Indicator -->
+    <div
+      class="shrink-0 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 hidden sm:block"
+    >
+      <span class="text-primary text-2xl font-serif">→</span>
+    </div>
+  </div>
+</div>

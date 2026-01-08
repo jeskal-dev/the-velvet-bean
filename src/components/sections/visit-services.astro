@@ -1,0 +1,52 @@
+---
+import PawIcon from "../icons/paw-icon.astro";
+import LaptopIcon from "../icons/laptop-icon.astro";
+import LeafIcon from "../icons/leaf-icon.astro";
+
+const features = [
+  {
+    title: "Pet Friendly",
+    description:
+      "Tu mejor amigo es bienvenido. Tenemos agua fresca y mimos preparados.",
+    Icon: PawIcon,
+  },
+  {
+    title: "Working Zone",
+    description:
+      "WiFi de alta velocidad y un ambiente tranquilo para que fluya tu creatividad.",
+    Icon: LaptopIcon,
+  },
+  {
+    title: "Urban Terrace",
+    description:
+      "Un pequeño oasis al aire libre para disfrutar de tu café bajo el sol.",
+    Icon: LeafIcon,
+  },
+];
+---
+
+<section class="py-24 border-b border-border/40 overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/40"
+    >
+      {
+        features.map((feature, index) => (
+          <div class="group px-8 py-12 md:py-0 text-center first:pl-0 last:pr-0 transition-opacity duration-700">
+            <div class="w-20 h-20 mx-auto rounded-full bg-primary/5 flex items-center justify-center text-primary mb-8 group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-500">
+              <feature.Icon size="xl" />
+            </div>
+
+            <h3 class="font-serif text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+              {feature.title}
+            </h3>
+
+            <p class="text-lg text-muted-foreground leading-relaxed max-w-xs mx-auto">
+              {feature.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

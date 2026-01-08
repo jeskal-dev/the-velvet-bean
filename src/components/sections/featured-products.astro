@@ -1,0 +1,81 @@
+---
+import { getFeaturedItems } from "../../data/menu";
+import MenuItemCard from "./menu-item.astro";
+
+const featuredItems = getFeaturedItems();
+// Duplicate items to ensure smooth infinite loop
+const doubleFeaturedItems = [...featuredItems, ...featuredItems];
+---
+
+<section class="py-20 bg-card/20 overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <!-- Section Header -->
+    <div class="max-w-2xl mx-auto text-center">
+      <span
+        class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4 border border-primary/20"
+      >
+        Recomendaciones
+      </span>
+      <h2
+        class="motion-preset-slide-right font-serif text-4xl sm:text-5xl font-bold text-foreground mb-4"
+      >
+        Nuestros <span class="text-primary italic">Favoritos</span>
+      </h2>
+      <p
+        class="motion-preset-fade motion-delay-100 text-muted-foreground text-lg"
+      >
+        Una selección curada de lo que más le gusta a nuestra comunidad local.
+      </p>
+    </div>
+  </div>
+
+  <!-- Infinite Scroll Track -->
+  <div class="relative w-full overflow-hidden mask-gradient">
+    <div class="flex gap-6 w-max animate-scroll hover:pause">
+      {
+        doubleFeaturedItems.map((item) => (
+          <div class="w-72 sm:w-96 shrink-0 transition-opacity duration-300 hover:opacity-100">
+            <MenuItemCard {...item} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+
+  .hover\:pause:hover {
+    animation-play-state: paused;
+  }
+
+  /* Fade mask for edges */
+  .mask-gradient {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+</style>

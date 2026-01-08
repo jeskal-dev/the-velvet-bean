@@ -1,0 +1,134 @@
+---
+import Image from "../ui/image.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section class:list={["py-20 lg:py-32 overflow-hidden", className]}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+      <!-- Content -->
+      <div class="motion-preset-slide-right order-2 lg:order-1">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-px bg-primary/40"></div>
+          <span class="text-xs font-bold uppercase tracking-widest text-primary"
+            >Nuestra Trayectoria</span
+          >
+        </div>
+
+        <h2
+          class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-tight"
+        >
+          Desde el corazón del barrio, <br />
+          <span class="text-accent italic">para todo el mundo</span>
+        </h2>
+
+        <div class="space-y-6 text-muted-foreground leading-relaxed text-lg">
+          <p>
+            The Velvet Bean nació en una pequeña esquina de la ciudad con un
+            solo molino y muchas ganas de hacer las cosas bien. Lo que empezó
+            como un refugio personal para los amantes del café, pronto se
+            convirtió en el punto de encuentro de vecinos y amigos.
+          </p>
+          <p>
+            Creemos en la <span class="font-bold">economía de cercanía</span>.
+            Por eso, aunque importamos los mejores granos de Colombia, Etiopía y
+            Brasil, todo nuestro proceso de tostado y elaboración se hace aquí
+            mismo, de forma artesanal, respetando los tiempos que el buen café
+            exige.
+          </p>
+          <p>
+            Hoy, seguimos manteniendo esa esencia de <span class="font-bold"
+              >"cafetería de barrio"</span
+            > donde cada barista conoce no solo tu café ideal, sino también tu nombre.
+          </p>
+        </div>
+
+        <!-- Stats (Local Shop Focus) -->
+        <div
+          class="mt-12 grid grid-cols-3 gap-8 p-8 bg-card/30 rounded-3xl border border-border/50 backdrop-blur-sm"
+        >
+          <div class="text-center">
+            <span class="block text-4xl font-serif font-bold text-primary mb-1"
+              >2024</span
+            >
+            <span
+              class="text-xs uppercase tracking-widest text-muted-foreground font-bold"
+              >Iniciamos</span
+            >
+          </div>
+          <div class="text-center border-x border-border/50 px-4">
+            <span class="block text-4xl font-serif font-bold text-primary mb-1"
+              >+10</span
+            >
+            <span
+              class="text-xs uppercase tracking-widest text-muted-foreground font-bold"
+              >Baristas</span
+            >
+          </div>
+          <div class="text-center">
+            <span class="block text-4xl font-serif font-bold text-primary mb-1"
+              >100%</span
+            >
+            <span
+              class="text-xs uppercase tracking-widest text-muted-foreground font-bold"
+              >Local</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Composition -->
+      <div class="motion-preset-slide-left relative order-1 lg:order-2">
+        <div class="relative z-10 group">
+          <!-- Main Image -->
+          <div
+            class="rounded-3xl overflow-hidden shadow-2xl border-4 border-card ring-1 ring-border/50"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1000&q=80"
+              alt="Interior acogedor de The Velvet Bean"
+              aspectRatio="2/3"
+              class="group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+
+          <!-- Floating Label -->
+          <div
+            class="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-6 rounded-2xl shadow-xl shadow-accent/20 hidden sm:block -rotate-3 motion-safe:animate-bounce-subtle"
+          >
+            <p class="font-serif italic text-lg leading-tight">
+              "Hecho a mano, <br /> con amor."
+            </p>
+          </div>
+        </div>
+
+        <!-- Background Decorations -->
+        <div
+          class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] bg-linear-to-br from-primary/5 to-accent/5 -rotate-6 rounded-[3rem] -z-10"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes bounce-subtle {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+  }
+</style>

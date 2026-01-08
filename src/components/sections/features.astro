@@ -1,0 +1,111 @@
+---
+import CommunityIcon from "../icons/community-icon.astro"; // Was Globe
+import CoffeeIcon from "../icons/coffee-icon.astro"; // Was Badge
+import PastryIcon from "../icons/pastry-icon.astro"; // Was Sparkle
+import ArrowRightIcon from "../icons/arrow-right-icon.astro";
+
+interface Feature {
+  id: string;
+  title: string;
+  description: string;
+}
+
+const features: Feature[] = [
+  {
+    id: "community",
+    title: "Tu Segundo Hogar",
+    description: "Más que una cafetería, somos parte del barrio. Un espacio acogedor donde nuestros baristas ya conocen tu nombre y tu orden favorita.",
+  },
+  {
+    id: "roasting",
+    title: "Tostado en Casa",
+    description: "Sin intermediarios industriales. Tostamos nuestros granos aquí mismo cada semana, llenando la calle con el aroma a café fresco.",
+  },
+  {
+    id: "homemade",
+    title: "Repostería de la Abuela",
+    description: "Olvídate de lo congelado. Nuestros bizcochos y galletas se hornean cada mañana en nuestra cocina con recetas familiares.",
+  },
+];
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "py-20 lg:py-28 bg-linear-to-b from-background to-card/30 relative overflow-hidden",
+    className,
+  ]}
+>
+   <!-- Decorative Background Number -->
+   <div class="absolute top-20 right-0 text-[12rem] font-serif font-bold text-primary/5 leading-none select-none pointer-events-none -translate-y-1/2 translate-x-1/4">
+      02
+   </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      
+      <!-- Sticky Header Column -->
+      <div class="lg:col-span-4 lg:sticky lg:top-32 self-start">
+        <span class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium tracking-wide mb-6 uppercase border border-accent/20">
+          Experiencia Local
+        </span>
+        <h2 class="motion-preset-slide-right font-serif text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight">
+          El Corazón <br/> del <span class="text-primary">Barrio</span>
+        </h2>
+        <p class="motion-preset-fade motion-delay-100 text-muted-foreground text-lg mb-8 leading-relaxed">
+          Aquí no hay prisas. Ven a disfrutar de una pausa real, con sabores auténticos y la calidez de siempre. Tu rincón favorito te espera.
+        </p>
+        <a href="/about" class="group inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors">
+          Ven a visitarnos
+          <ArrowRightIcon size="sm" class="group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+
+      <!-- Features Cards Column -->
+      <div class="lg:col-span-8 flex flex-col gap-6">
+        {features.map((feature, index) => (
+          <div
+            class:list={[
+              "group relative bg-card p-6 sm:p-8 rounded-2xl border border-border/50",
+              "hover:border-primary/30 transition-all duration-300",
+              "hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1",
+              `motion-preset-slide-up motion-delay-${(index + 1) * 100}`,
+            ]}
+          >
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <!-- Icon Box -->
+              <div class="shrink-0 w-16 h-16 rounded-2xl bg-linear-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ring-1 ring-inset ring-white/20">
+                {feature.id === "community" && <CommunityIcon size="xl" class="text-primary" />}
+                {feature.id === "roasting" && <CoffeeIcon size="xl" class="text-primary" />}
+                {feature.id === "homemade" && <PastryIcon size="xl" class="text-primary" />}
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1">
+                 <h3 class="font-serif text-xl sm:text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {feature.title}
+                 </h3>
+                 <p class="text-muted-foreground leading-relaxed text-base">
+                  {feature.description}
+                 </p>
+              </div>
+
+              <!-- Action Icon (Decorative) -->
+              <div class="hidden sm:block opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300 text-primary">
+                 <ArrowRightIcon size="md" />
+              </div>
+            </div>
+             <!-- Gradient Line -->
+            <div class="absolute bottom-0 left-8 right-8 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import Image from "../ui/image.astro";
+---
+
+<section
+  class="relative h-[60vh] min-h-100 overflow-hidden grayscale-30 hover:grayscale-0 transition-all duration-1000"
+>
+  <Image
+    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80"
+    alt="Interior acogedor de The Velvet Bean"
+    class="w-full h-full object-cover"
+    aspectRatio="16/9"
+  />
+  <div
+    class="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent"
+  >
+  </div>
+
+  <!-- Center Label -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div
+      class="bg-card/90 backdrop-blur-xl border border-border/50 p-8 rounded-full shadow-2xl scale-125 md:scale-150 group cursor-pointer hover:border-primary/50 transition-all duration-300"
+    >
+      <div
+        class="text-center group-hover:scale-105 transition-transform duration-300"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.3em] font-bold text-accent mb-2"
+        >
+          Google Maps
+        </p>
+        <a
+          href="https://goo.gl/maps/example"
+          target="_blank"
+          class="font-serif text-xl font-bold text-foreground hover:text-primary transition-colors block"
+        >
+          Abrir Navegación <span
+            class="inline-block transition-transform group-hover:translate-x-1"
+            >→</span
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

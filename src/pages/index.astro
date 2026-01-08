@@ -1,16 +1,22 @@
 ---
-
+import Layout from "../components/layouts/layout.astro";
+import Header from "../components/layouts/header.astro";
+import Footer from "../components/layouts/footer.astro";
+import Hero from "../components/sections/hero.astro";
+import Features from "../components/sections/features.astro";
+import FeaturedProducts from "../components/sections/featured-products.astro";
+import CTA from "../components/sections/cta.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <Header />
+
+  <main class="flex-1">
+    <Hero />
+    <Features />
+    <FeaturedProducts />
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>

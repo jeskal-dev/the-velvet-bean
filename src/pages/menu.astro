@@ -1,0 +1,200 @@
+---
+import Layout from "../components/layouts/layout.astro";
+import Header from "../components/layouts/header.astro";
+import Footer from "../components/layouts/footer.astro"; 
+import Image from "../components/ui/image.astro";
+import { menuItems, categories } from "../data/menu";
+import BoutiqueMenuItem from "../components/cards/boutique-menu-item.astro";
+
+// Group items by category
+const itemsByCategory = categories.map((category) => ({
+  ...category,
+  items: menuItems.filter((item) => item.category === category.id),
+}));
+
+// Unsplash category images (Placeholder verified ones)
+const categoryImages = {
+  coffee: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000&q=80",
+  pastry: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1000&q=80",
+  tea: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1000&q=80",
+};
+---
+
+<Layout
+  title="Menú Boutique | The Velvet Bean"
+  description="Carta artesanal de The Velvet Bean. Café de especialidad, repostería casera y tés premium."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Page Header (High-End) -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background">
+      <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/5 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-linear-to-tr from-accent/5 to-transparent"></div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl">
+          <span class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20">
+            Experiencia Velvet
+          </span>
+          <h1 class="motion-preset-slide-right font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-foreground mb-8 leading-[0.9] tracking-tighter">
+            Nuestra <span class="text-primary italic subrayado-menu">Carta</span>
+          </h1>
+          <p class="motion-preset-fade motion-delay-200 text-xl sm:text-2xl text-muted-foreground leading-relaxed">
+            Cada producto es seleccionado por su origen y preparado con la calma que el buen sabor exige. Un ritual en cada detalle.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boutique Category Nav (Sticky) -->
+    <div class="sticky top-16 z-40 bg-background/80 backdrop-blur-xl border-y border-border/40 py-4 lg:py-6">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-8">
+           <nav class="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 sm:pb-0" aria-label="Categorías">
+             <button
+               data-category="all"
+               class="filter-btn px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase transition-all whitespace-nowrap bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+             >
+               Todos
+             </button>
+             {categories.map((cat) => (
+               <button
+                 data-category={cat.id}
+                 class="filter-btn px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase transition-all whitespace-nowrap text-muted-foreground hover:text-foreground hover:bg-muted/50"
+               >
+                 {cat.name}
+               </button>
+             ))}
+           </nav>
+           
+           <!-- Optional: Search or Status -->
+           <div class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+              Disponible Hoy
+           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <div class="py-20 lg:py-32 space-y-32">
+      {itemsByCategory.map((category, index) => (
+        <section 
+          id={category.id} 
+          class="menu-section scroll-mt-40" 
+          data-category={category.id}
+        >
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+              
+              <!-- Category Visual (Sticky on Desktop) -->
+              <div class:list={[
+                "lg:col-span-5 lg:sticky lg:top-48",
+                 index % 2 !== 0 ? "lg:order-last" : ""
+              ]}>
+                <div class="relative group">
+                  <div class="rounded-4xl overflow-hidden shadow-2xl ring-1 ring-border/50">
+                    <Image 
+                      src={categoryImages[category.id as keyof typeof categoryImages]} 
+                      alt={category.name}
+                      aspectRatio="3/2"
+                      class="group-hover:scale-105 transition-transform duration-1000"
+                    />
+                  </div>
+                  <!-- Label Overlay -->
+                  <div class:list={[
+                    "absolute -bottom-8 bg-card border border-border/50 p-6 rounded-3xl shadow-xl max-w-70",
+                    index % 2 !== 0 ? "-left-4" : "-right-4"
+                  ]}>
+                    <h2 class="font-serif text-3xl font-bold text-foreground mb-2">{category.name}</h2>
+                    <p class="text-muted-foreground text-sm uppercase tracking-widest font-bold font-sans">{category.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item List -->
+              <div class="lg:col-span-7 space-y-2">
+                 {category.items.map((item) => (
+                   <BoutiqueMenuItem  name={item.name} image={item.image} price={item.price} description={item.description} featured={item.featured}/>
+                 ))}
+                 
+                 <!-- Footer Note for category -->
+                 <div class="mt-12 p-6 rounded-3xl bg-primary/5 border border-primary/10">
+                    <p class="text-sm italic text-primary leading-relaxed">
+                      * Todos nuestros {category.name.toLowerCase()} pueden ser personalizados según tu preferencia. Pregunta a nuestro equipo.
+                    </p>
+                 </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .subrayado-menu {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  function initFilters() {
+    const btns = document.querySelectorAll('.filter-btn');
+    const sections = document.querySelectorAll('.menu-section');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-category');
+
+        // Styles
+        btns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-primary-foreground', 'shadow-lg', 'shadow-primary/20');
+          b.classList.add('text-muted-foreground', 'hover:text-foreground', 'hover:bg-muted/50');
+        });
+        btn.classList.remove('text-muted-foreground', 'hover:text-foreground', 'hover:bg-muted/50');
+        btn.classList.add('bg-primary', 'text-primary-foreground', 'shadow-lg', 'shadow-primary/20');
+
+        // Action: filter or scroll
+        if (cat === 'all') {
+          sections.forEach(s => (s as HTMLElement).style.display = 'block');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          sections.forEach(s => {
+             const htmlS = s as HTMLElement;
+             if (s.id === cat) {
+                htmlS.style.display = 'block';
+                const yOffset = -160; 
+                const y = htmlS.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({top: y, behavior: 'smooth'});
+             } else {
+                htmlS.style.display = 'none';
+             }
+          });
+        }
+      });
+    });
+  }
+
+  initFilters();
+  document.addEventListener('astro:after-swap', initFilters);
+</script>

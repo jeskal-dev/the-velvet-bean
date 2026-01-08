@@ -1,0 +1,90 @@
+---
+import Layout from "../components/layouts/layout.astro";
+import Header from "../components/layouts/header.astro";
+import Footer from "../components/layouts/footer.astro";
+import FindUs from "../components/sections/find-us.astro";
+import Button from "../components/ui/button.astro";
+import VisitServices from "../components/sections/visit-services.astro";
+import VisitMap from "../components/sections/visit-map.astro";
+---
+
+<Layout
+  title="Visítanos | The Velvet Bean"
+  description="Encuentra nuestra cafetería boutique en el corazón de Madrid. Horarios, ubicación y servicios."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section
+      class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background"
+    >
+      <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div
+          class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/5 to-transparent"
+        >
+        </div>
+      </div>
+
+      <div
+        class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+      >
+        <div class="max-w-3xl mx-auto">
+          <span
+            class="motion-preset-fade inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20"
+          >
+            Punto de Encuentro
+          </span>
+          <h1
+            class="motion-preset-slide-up font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-foreground mb-8 leading-[0.9] tracking-tighter"
+          >
+            Tu refugio en <br />
+            <span class="text-primary italic">la ciudad</span>
+          </h1>
+          <p
+            class="motion-preset-fade motion-delay-200 text-xl text-muted-foreground leading-relaxed"
+          >
+            Ven a descubrir un espacio donde el tiempo se detiene y el aroma a
+            café recién tostado lo inunda todo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Find Us Section -->
+    <FindUs />
+
+    <!-- Services / Features Grid -->
+    <VisitServices />
+
+    <!-- Map Placeholder (Large Full Width Visual) -->
+    <VisitMap />
+
+    <!-- Final CTA Integration -->
+    <section class="py-24 lg:py-40">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-2xl mx-auto space-y-8">
+          <h2 class="font-serif text-4xl lg:text-5xl font-bold text-foreground">
+            ¿Tienes alguna duda?
+          </h2>
+          <p class="text-xl text-muted-foreground">
+            Estamos aquí para escucharte. Si quieres reservar para un grupo o
+            hablarnos de un evento, escríbenos.
+          </p>
+          <div class="flex justify-center gap-4">
+            <Button
+              href="mailto:hola@thevelvetbean.com"
+              variant="primary"
+              size="lg"
+              rounded="full"
+            >
+              Escríbenos ahora
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

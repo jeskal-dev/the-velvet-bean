@@ -1,0 +1,50 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  showConnector?: boolean;
+  class?: string;
+}
+
+const {
+  number,
+  title,
+  description,
+  showConnector = false,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={["relative group", className]}>
+  <!-- Connector Line (optional) -->
+  {
+    showConnector && (
+      <div class="hidden lg:block absolute top-8 left-1/2 w-full h-px bg-linear-to-r from-border to-transparent" />
+    )
+  }
+
+  <!-- Step Content -->
+  <div
+    class="relative bg-card rounded-2xl p-6 lg:p-8 border border-border/50 hover:border-primary/30 shadow-sm hover:shadow-lg motion-safe:transition-all motion-safe:duration-300"
+  >
+    <!-- Number Badge -->
+    <div
+      class="w-16 h-16 rounded-xl bg-linear-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 motion-safe:transition-transform motion-safe:duration-300"
+    >
+      <span class="text-2xl font-serif font-bold text-primary-foreground">
+        {number}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-serif text-xl font-semibold text-foreground mb-3">
+      {title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-muted-foreground text-sm leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>

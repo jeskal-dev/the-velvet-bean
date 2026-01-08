@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+}
+
+const { class: className, size = "md" } = Astro.props;
+
+const sizeClasses = {
+  xs: "w-3 h-3",
+  sm: "w-4 h-4",
+  md: "w-5 h-5",
+  lg: "w-6 h-6",
+  xl: "w-7 h-7",
+};
+---
+
+<svg
+  class:list={[sizeClasses[size], className]}
+  fill="none"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="1.5"
+    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3a3 3 0 00-3 3v2c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V6a3 3 0 00-3-3H9z"
+  ></path>
+</svg>

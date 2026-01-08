@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative w-10 h-10 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center shadow-lg hover:shadow-primary/25 motion-safe:transition-shadow motion-safe:duration-300",
+    className,
+  ]}
+>
+  <span class="text-primary-foreground font-serif font-bold text-lg">V</span>
+</div>

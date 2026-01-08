@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* --- Modo Claro: Tema "Latte" --- */
+
+  /* Fondo base: Crema suave */
+  --background: oklch(0.98 0.015 85);
+
+  /* Texto principal: Café espresso oscuro */
+  --foreground: oklch(0.25 0.04 50);
+
+  /* Fondo de tarjetas: Blanco cálido */
+  --card: oklch(1 0 0);
+
+  /* Borde: Beige muy sutil */
+  --border: oklch(0.9 0.02 85);
+
+  /* Botón principal: Marrón café medio */
+  --primary: oklch(0.45 0.08 50);
+
+  /* Texto sobre botón principal: Blanco puro */
+  --primary-foreground: oklch(1 0 0);
+
+  /* Botón secundario: Crema oscuro */
+  --secondary: oklch(0.93 0.03 70);
+
+  /* Acento: Caramelo/Dorado */
+  --accent: oklch(0.7 0.14 55);
+
+  /* Texto de acento: Café oscuro */
+  --accent-foreground: oklch(0.25 0.04 50);
+
+  /* Texto deshabilitado/letrero pequeño */
+  --muted: oklch(0.6 0.02 70);
+  --muted-foreground: oklch(0.5 0.04 50);
+
+  /* Anillo de enfoque */
+  --ring: oklch(0.45 0.08 50);
+}
+
+.dark {
+  /* --- Modo Oscuro: Tema "Charcoal & Roast" --- */
+
+  /* Fondo base: Gris café profundo (no negro puro) */
+  --background: oklch(0.18 0.02 40);
+
+  /* Texto principal: Crema suave */
+  --foreground: oklch(0.96 0.01 85);
+
+  /* Fondo de tarjetas: Café muy oscuro */
+  --card: oklch(0.2 0.02 40);
+
+  /* Borde: Marrón grisáceo */
+  --border: oklch(0.28 0.02 40);
+
+  /* Botón principal: Café con leche (ligero) */
+  --primary: oklch(0.55 0.07 50);
+
+  /* Texto sobre botón principal: Blanco crema */
+  --primary-foreground: oklch(0.96 0.01 85);
+
+  /* Botón secundario: Gris café */
+  --secondary: oklch(0.25 0.02 40);
+
+  /* Acento: Caramelo oscuro */
+  --accent: oklch(0.6 0.12 55);
+
+  /* Texto de acento: Crema */
+  --accent-foreground: oklch(0.96 0.01 85);
+
+  /* Texto deshabilitado */
+  --muted: oklch(0.35 0.02 40);
+  --muted-foreground: oklch(0.7 0.02 70);
+
+  /* Anillo de enfoque */
+  --ring: oklch(0.6 0.07 50);
+}
+
+@theme {
+  /* Mapeo de variables CSS definidas arriba para que Tailwind las use en clases */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: oklch(0.55 0.22 25);
+  --color-destructive-foreground: oklch(0.98 0.01 85);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--ring);
+
+  --radius: 0.5rem;
+}
+
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%) skewX(-20deg);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce 3s infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }

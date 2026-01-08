@@ -1,0 +1,62 @@
+---
+import { ClientRouter } from "astro:transitions";
+import ScrollToTop from "../ui/scroll-to-top.astro";
+import "../../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "The Velvet Bean | Café Artesanal",
+  description = "Descubre el café de especialidad más fino. En The Velvet Bean seleccionamos granos de origen único para ofrecerte una experiencia sensorial única.",
+} = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts: Playfair Display (Títulos) + Inter (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+    <title>{title}</title>
+  </head>
+  <body
+    class="bg-background text-foreground font-sans antialiased min-h-screen flex flex-col"
+  >
+    <slot />
+    <ScrollToTop />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+</style>
