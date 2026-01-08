@@ -7,6 +7,7 @@ import ToggleThemeButton from "../ui/toggle-theme-button.astro";
 
 interface Props {
   class?: string;
+  currentPath?: string;
 }
 
 interface NavItem {
@@ -21,8 +22,7 @@ const navItems: NavItem[] = [
   { href: "/visit", label: "Visítanos" },
 ];
 
-const currentPath = Astro.url.pathname;
-const { class: className } = Astro.props;
+const { class: className, currentPath = "/" } = Astro.props;
 ---
 
 <header
